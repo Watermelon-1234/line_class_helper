@@ -1,9 +1,3 @@
 line-bot-sdk
 flask
 requests
-gunicorn
-icrawler
-Pillow
-beautifulsoup4
-lxml
-youtube-search-python
