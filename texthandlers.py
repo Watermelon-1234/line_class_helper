@@ -3,7 +3,7 @@ def test():
 
 def roll_call(input):#名字 課程ID 是否會遲到(0/1) 備註(選填)
 
-    reply=[]
+    reply=''
     reply.status=1
     reply.content="just fuck off!"
     return reply
@@ -11,7 +11,7 @@ def roll_call(input):#名字 課程ID 是否會遲到(0/1) 備註(選填)
 def score_register(input):#課程名稱
     
 
-    reply=[]
+    reply=''
     reply.status=1
     reply.content="just fuck off!"
     return reply
