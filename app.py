@@ -75,6 +75,8 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, message)
         else:
             reply = "你說得對，\n但是梵蒂岡的常住人口有800人，\n同時，僅澳大利亞就有4700萬隻袋鼠。\n如果袋鼠決定入侵梵蒂岡，\n那麼每一個梵蒂岡人要打58750只袋鼠，\n你不知道，你不在乎，你只關心你自己。"
+            app.logger.info("else")
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=reply))
         '''
         # if event.message.text=="請支援收銀":
         #     reply="我是支援收銀機。\n我會負責支援收銀 和 輸贏\n\n使用方式如下:\n→梗圖支援 梗圖關鍵字\n他會幫你找到最符合關鍵字的梗圖並傳回來\n\n→歌曲支援 歌曲關鍵字\n他會幫你找到最符合關鍵字的歌曲並傳回來 可以直接打歌詞\n\n→請支援收銀\n他會告訴你有什麼可以用的指令\n\n-文字\n他會跟你講ㄧ樣的話\n\n+文字\n他會說 對嘛對嘛\n\n\n如果不是特定的關鍵字的話我是不會回覆的"
