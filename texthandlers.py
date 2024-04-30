@@ -4,13 +4,14 @@ def test():
 class Reply:
     def __init__(self, message="just fuck off!"):
         self.content = message
-        self.status = 0  # ¹w³]ª¬ºA¬° 0
+        self.status = 0  # é è¨­ç‹€æ…‹ç‚º 0
 
 
-def roll_call(input):#¦W¦r ½Òµ{ID ¬O§_·|¿ğ¨ì(0/1) ³Æµù(¿ï¶ñ)
+def roll_call(input):#åå­— èª²ç¨‹ID æ˜¯å¦æœƒé²åˆ°(0/1) å‚™è¨»(é¸å¡«)
 
     reply = Reply()
     reply.status=1
     reply.content="just fuck off!"
     return reply
 
+# print(roll_call(0).content)
