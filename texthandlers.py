@@ -18,9 +18,9 @@ def dealer(func,input):
 
 
 
-def genernal_request(func="roll_call",data=["周西瓜","1","1","被電神電暈了"]):#data:a list of parameters
+def genernal_request(func="roll_call",data="周西瓜 1 1 被電神電暈了"):#data=["周西瓜","1","1","被電神電暈了"]):#data:string=>a list of parameters
     # print(type(data))
-    
+    data = data.split(" ")
     data_dictize ={"data":",".join(data) , "func":func}
     # solve "don't match the signature for spreadsheet.appendRow":
     # beacuse get can't directly pass parameters of type of list
@@ -56,7 +56,7 @@ def genernal_request(func="roll_call",data=["周西瓜","1","1","被電神電暈
         print(f"Error: HTTP status code {response.status_code}")
         status = -1
 
-    # return {"status":status,"reply":response.reply}
+    return {"status":status,"reply":response.reply}
     return 1
 
 # print(roll_call(0).content)
