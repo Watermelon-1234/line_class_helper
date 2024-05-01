@@ -12,6 +12,7 @@ def test():
 
 
 def dealer(func,input):
+    print("entering dealer")
     input = input.split()
     reply = genernal_request(func,input)
     return reply
@@ -19,6 +20,7 @@ def dealer(func,input):
 
 
 def genernal_request(func="roll_call",data="周西瓜 1 1 被電神電暈了"):#data=["周西瓜","1","1","被電神電暈了"]):#data:string=>a list of parameters
+    print("entering genernal request")
     # print(type(data))
     data = data.split(" ")
     data_dictize ={"data":",".join(data) , "func":func}
@@ -29,6 +31,7 @@ def genernal_request(func="roll_call",data="周西瓜 1 1 被電神電暈了"):#
     print(data_dictize)
     response = requests.get(url, params=data_dictize) # Use json=data for JSON data(X )
                                                     #Use params=data in get and Use data=data in post
+    print("response was gotten")
     try:
         print(json.loads(response.text))
     except Exception as e:
@@ -39,6 +42,7 @@ def genernal_request(func="roll_call",data="周西瓜 1 1 被電神電暈了"):#
     # Check for successful response
     if response.status_code == 200:
         try:
+            print("dealing data")
             # Assuming JSON response: Parse as JSON and access data
             data = response_dealed['data']
             print(data)

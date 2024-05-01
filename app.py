@@ -32,6 +32,7 @@ handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
 
 @app.route("/callback", methods=['POST'])
 def callback():
+    app.logger.info("Entering callback")
     signature = request.headers['X-Line-Signature']#是用來驗證請求的有效性
     body = request.get_data(as_text=True)#獲取 HTTP 請求的資料主體（body） 以文字格式解析 後續處理方便
     app.logger.info("Request body: " + body)#請求的資料主體寫入 Flask 應用程式的日誌，方便後續查看
@@ -50,6 +51,7 @@ def i_alive():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    app.logger.info("entering handler")
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)
         def TextSendMessage(message):
