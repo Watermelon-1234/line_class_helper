@@ -46,7 +46,7 @@ def genernal_request(func="roll_call",data="周西瓜 1 1 被電神電暈了"):#
                 print("Request successful!")
                 status = 1
             else:
-                print(f"Error: API returned status {data['status']}")
+                print(f"Error: API returned status {response_dealed['status']}")
                 status = -1
         except (json.JSONDecodeError, KeyError):
             # Handle potential errors if response is not JSON or 'status' key is missing
@@ -60,4 +60,4 @@ def genernal_request(func="roll_call",data="周西瓜 1 1 被電神電暈了"):#
 
 
 # print(roll_call(0).content)
-print(genernal_request())
+# print(genernal_request())
