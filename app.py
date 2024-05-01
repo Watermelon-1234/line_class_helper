@@ -35,44 +35,43 @@ def handle_message(event):
             reply = texthandlers.dealer("roll_call",event.message.text[4:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            # if(reply.status == 1):
-            if 1==1:
-                message = TextSendMessage(text=reply.content)
+            if(reply['status']):
+                message = TextSendMessage(text=reply['content'])
                 line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("開始簽到 "):#開始簽到 課程名稱
             reply = texthandlers.dealer("start_roll_call",event.message.text[6:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply.status == 1):
-                message = TextSendMessage(text=reply.content)
+            if(reply['status']):
+                message = TextSendMessage(text=reply['content'])
                 line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("檢視簽到 "):#檢視簽到 ID
             reply = texthandlers.dealer("view_roll_call",event.message.text[4:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply.status == 1):
-                message = TextSendMessage(text=reply.content)
+            if(reply['status']):
+                message = TextSendMessage(text=reply['content'])
                 line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("報分數 "):#報分數 名子 座號\n一項\n第一項成績  (過了"V"，沒過用"X")
             reply = texthandlers.dealer("score_register",event.message.text[5:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply.status == 1):
-                message = TextSendMessage(text=reply.content)
+            if(reply['status']):
+                message = TextSendMessage(text=reply['content'])
             line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("開始報成績 "):#開始報成績/n項目一/n項目二
             reply = texthandlers.dealer("start_score_register",event.message.text[7:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply.status == 1):
-                message = TextSendMessage(text=reply.content)
+            if(reply['status']):
+                message = TextSendMessage(text=reply['content'])
                 line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("檢視成績 "):#開始報成績/n項目一/n項目二
             reply = texthandlers.dealer("view_score_register",event.message.text[6:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply.status == 1):
-                message = TextSendMessage(text=reply.content)
+            if(reply['status']):
+                message = TextSendMessage(text=reply['content'])
                 line_bot_api.reply_message(event.reply_token, message)
         else:
             reply = "你說得對，\n但是梵蒂岡的常住人口有800人，\n同時，僅澳大利亞就有4700萬隻袋鼠。\n如果袋鼠決定入侵梵蒂岡，\n那麼每一個梵蒂岡人要打58750只袋鼠，\n你不知道，你不在乎，你只關心你自己。"
