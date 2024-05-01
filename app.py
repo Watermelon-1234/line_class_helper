@@ -143,6 +143,6 @@ def handle_message(event):
 if __name__ == "__main__":
     # app.run(host='0.0.0.0', port=port)
     from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
-    # port = int(os.environ.get('PORT', 5000)) # use serve to replace app.run for:
+    port = int(os.environ.get('PORT', 5000)) # use serve to replace app.run for:
+    serve(app, host="0.0.0.0", port=port)
             # "WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead."
