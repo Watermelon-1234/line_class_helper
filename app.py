@@ -5,7 +5,7 @@ from flask import Flask, request, abort
 # above are deprecated QAQ
 import os
 import texthandlers
-from linebot.v3.models import *
+# from linebot.v3.models import *
 from linebot.v3 import (
     WebhookHandler
 )
@@ -144,4 +144,3 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
-    app.logger.info("port: " + str(port))
