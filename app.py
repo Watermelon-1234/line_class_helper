@@ -140,7 +140,9 @@ def handle_message(event):
             TextSendMessage(reply)
         
 
-import os
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    # app.run(host='0.0.0.0', port=port)
+    serve(app, host="0.0.0.0", port=8080)
+    port = int(os.environ.get('PORT', 5000)) # use serve to replace app.run for:
+            # "WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead."
+    from waitress import serve
