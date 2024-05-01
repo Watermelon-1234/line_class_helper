@@ -35,7 +35,8 @@ def handle_message(event):
             reply = texthandlers.dealer("roll_call",event.message.text[4:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply.status == 1):
+            # if(reply.status == 1):
+            if 1==1:
                 message = TextSendMessage(text=reply.content)
                 line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("開始簽到 "):#開始簽到 課程名稱

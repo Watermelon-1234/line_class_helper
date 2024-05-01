@@ -46,7 +46,7 @@ def genernal_request(func="roll_call",data=["周西瓜","1","1","被電神電暈
             # Assuming JSON response: Parse as JSON and access data
             data = response_dealed['data']
             print(data)
-            if 1==1:#response_dealed['status'] == 1:  # Check for API-specific status code
+            if response_dealed['status'] == 1:  # Check for API-specific status code
                 print("Request successful!")
                 status = 1
             else:
@@ -65,4 +65,4 @@ def genernal_request(func="roll_call",data=["周西瓜","1","1","被電神電暈
 
 # print(roll_call(0).content)
 # print(genernal_request())
-print(dealer("roll_call","1 1 1 1"))
+# print(dealer("roll_call","1 1 1 1"))
