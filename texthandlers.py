@@ -56,7 +56,7 @@ def genernal_request(func="roll_call",data="周西瓜 1 1 被電神電暈了"):#
         print(f"Error: HTTP status code {response.status_code}")
         status = -1
 
-    return {"status":status,"content":response.reply}
+    return {"status":status,"content":response_dealed['reply']}
 
 
 # print(roll_call(0).content)
