@@ -46,32 +46,32 @@ def handle_message(event):
             reply = texthandlers.dealer(app,"roll_call",event.message.text[3:]);
             app.logger.info("handler-簽到")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            send_message(event,reply['status'],reply['message'])
+            send_message(event,reply['status'],reply['reply'])
         if event.message.text.startswith("開始簽到 "):#開始簽到 課程名稱
             reply = texthandlers.dealer(app,"start_roll_call",event.message.text[5:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            send_message(event,reply['status'],reply['message'])
+            send_message(event,reply['status'],reply['reply'])
         if event.message.text.startswith("檢視簽到 "):#檢視簽到 ID
             reply = texthandlers.dealer(app,"view_roll_call",event.message.text[3:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            send_message(event,reply['status'],reply['message'])
+            send_message(event,reply['status'],reply['reply'])
         if event.message.text.startswith("報分數 "):#報分數 名子 座號\n一項\n第一項成績  (過了"V"，沒過用"X")
             reply = texthandlers.dealer(app,"score_register",event.message.text[4:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            send_message(event,reply['status'],reply['message'])
+            send_message(event,reply['status'],reply['reply'])
         if event.message.text.startswith("開始報成績 "):#開始報成績/n項目一/n項目二
             reply = texthandlers.dealer(app,"start_score_register",event.message.text[6:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            send_message(event,reply['status'],reply['message'])
+            send_message(event,reply['status'],reply['reply'])
         if event.message.text.startswith("檢視成績 "):#開始報成績/n項目一/n項目二
             reply = texthandlers.dealer(app,"view_score_register",event.message.text[5:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            send_message(event,reply['status'],reply['message'])
+            send_message(event,reply['status'],reply['reply'])
         if event.message.text == "學生" or event.message.text == "老師":
             app.logger.info("user_is_ascking_for_command")
         else:
