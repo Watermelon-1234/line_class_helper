@@ -56,9 +56,11 @@ def genernal_request(app,func="roll_call",data=["周西瓜","1","1","被電神�
         except (json.JSONDecodeError, KeyError):
             # Handle potential errors if response is not JSON or 'status' key is missing
             app.logger.info("Error: Could not parse response data.")
+            response_dealed['reply'] = "出問題囉:Error: Could not parse response data."
             status = -1
     else:
         app.logger.info(f"Error: HTTP status code {response.status_code}")
+        response_dealed['reply'] = f"出問題囉:Error: HTTP status code {response.status_code}"
         status = -1
 
     return {"status":status,"content":response_dealed['reply']}

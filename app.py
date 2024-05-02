@@ -46,80 +46,47 @@ def handle_message(event):
             reply = texthandlers.dealer(app,"roll_call",event.message.text[3:]);
             app.logger.info("handler-簽到")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply['status']):
-                message = TextSendMessage(text=reply['content'])
-                line_bot_api.reply_message(event.reply_token, message)
+            send_message(event,reply['status'],reply['message'])
         if event.message.text.startswith("開始簽到 "):#開始簽到 課程名稱
             reply = texthandlers.dealer(app,"start_roll_call",event.message.text[5:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply['status']):
-                message = TextSendMessage(text=reply['content'])
-                line_bot_api.reply_message(event.reply_token, message)
+            send_message(event,reply['status'],reply['message'])
         if event.message.text.startswith("檢視簽到 "):#檢視簽到 ID
             reply = texthandlers.dealer(app,"view_roll_call",event.message.text[3:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply['status']):
-                message = TextSendMessage(text=reply['content'])
-                line_bot_api.reply_message(event.reply_token, message)
+            send_message(event,reply['status'],reply['message'])
         if event.message.text.startswith("報分數 "):#報分數 名子 座號\n一項\n第一項成績  (過了"V"，沒過用"X")
             reply = texthandlers.dealer(app,"score_register",event.message.text[4:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply['status']):
-                message = TextSendMessage(text=reply['content'])
-            line_bot_api.reply_message(event.reply_token, message)
+            send_message(event,reply['status'],reply['message'])
         if event.message.text.startswith("開始報成績 "):#開始報成績/n項目一/n項目二
             reply = texthandlers.dealer(app,"start_score_register",event.message.text[6:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply['status']):
-                message = TextSendMessage(text=reply['content'])
-                line_bot_api.reply_message(event.reply_token, message)
+            send_message(event,reply['status'],reply['message'])
         if event.message.text.startswith("檢視成績 "):#開始報成績/n項目一/n項目二
             reply = texthandlers.dealer(app,"view_score_register",event.message.text[5:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
-            if(reply['status']):
-                message = TextSendMessage(text=reply['content'])
-                line_bot_api.reply_message(event.reply_token, message)
+            send_message(event,reply['status'],reply['message'])
         else:
             reply = "你說得對，\n但是梵蒂岡的常住人口有800人，\n同時，僅澳大利亞就有4700萬隻袋鼠。\n如果袋鼠決定入侵梵蒂岡，\n那麼每一個梵蒂岡人要打58750只袋鼠，\n你不知道，你不在乎，你只關心你自己。"
             app.logger.info("else")
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=reply))
-        '''
-        # if event.message.text=="請支援收銀":
-        #     reply="我是支援收銀機。\n我會負責支援收銀 和 輸贏\n\n使用方式如下:\n→梗圖支援 梗圖關鍵字\n他會幫你找到最符合關鍵字的梗圖並傳回來\n\n→歌曲支援 歌曲關鍵字\n他會幫你找到最符合關鍵字的歌曲並傳回來 可以直接打歌詞\n\n→請支援收銀\n他會告訴你有什麼可以用的指令\n\n-文字\n他會跟你講ㄧ樣的話\n\n+文字\n他會說 對嘛對嘛\n\n\n如果不是特定的關鍵字的話我是不會回覆的"
-        #     app.logger.info("我支援了收銀") 
-        #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply))
-
-        # if event.message.text.startswith("-"):
-        #     app.logger.info("附和")
-        #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.message.text[1:]))
-        # if event.message.text.startswith("+"):
-        #     app.logger.info("對嘛對嘛")
-        #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text="對嘛對嘛"))
-        # if event.message.text.startswith("歌曲支援 "):
-            
-        #     reply= request_4.find_video(event.message.text[4:])
-        #     app.logger.info("Song is :"+str(reply))
-
-        #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply))
-        # if request_4.check_keywords(event.message.text):
-        #     app.logger.info(":(")
-        #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text="不好欸"))
-        # if event.message.text=="歌曲支援" or event.message.text=="梗圖支援":
-        #     app.logger.info("missing keyword")
-        #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text="請輸入關鍵字"))
-'''
-
     except Exception as e:
         app.logger.error("An error occurred: " + str(e))
         reply = "出了一些問題，請稍後再試"
         message = TextSendMessage(text=reply)
         line_bot_api.reply_message(event.reply_token, message)
-    
+def send_message(event,status,content):
+    if(status!=1):
+        app.logger.error(content)
+    message = TextSendMessage(text=content)
+    line_bot_api.reply_message(event.reply_token, message)
+
 
 import os
 if __name__ == "__main__":
