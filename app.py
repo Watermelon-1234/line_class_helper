@@ -4,8 +4,19 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 import os
 import texthandlers
+import logging
 
 app = Flask(__name__)
+
+app.logger.setLevel(logging.DEBUG)
+
+logging_handeler = logging.StreamHandler()
+logging_handeler.setLevel(logging.DEBUG)
+
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+logging_handeler.setFormatter(formatter)
+
+app.logger.addHandler(logging_handeler)
 
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
@@ -32,42 +43,42 @@ def i_alive():
 def handle_message(event):
     try:
         if event.message.text.startswith("簽到 "):#簽到 名字 課程ID 是否會遲到(0/1) 備註(選填)
-            reply = texthandlers.dealer("roll_call",event.message.text[4:]);
-            app.logger.info("")
+            reply = texthandlers.dealer(app,"roll_call",event.message.text[4:]);
+            app.logger.info("handler-簽到")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             if(reply['status']):
                 message = TextSendMessage(text=reply['content'])
                 line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("開始簽到 "):#開始簽到 課程名稱
-            reply = texthandlers.dealer("start_roll_call",event.message.text[6:]);
+            reply = texthandlers.dealer(app,"start_roll_call",event.message.text[6:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             if(reply['status']):
                 message = TextSendMessage(text=reply['content'])
                 line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("檢視簽到 "):#檢視簽到 ID
-            reply = texthandlers.dealer("view_roll_call",event.message.text[4:]);
+            reply = texthandlers.dealer(app,"view_roll_call",event.message.text[4:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             if(reply['status']):
                 message = TextSendMessage(text=reply['content'])
                 line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("報分數 "):#報分數 名子 座號\n一項\n第一項成績  (過了"V"，沒過用"X")
-            reply = texthandlers.dealer("score_register",event.message.text[5:]);
+            reply = texthandlers.dealer(app,"score_register",event.message.text[5:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             if(reply['status']):
                 message = TextSendMessage(text=reply['content'])
             line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("開始報成績 "):#開始報成績/n項目一/n項目二
-            reply = texthandlers.dealer("start_score_register",event.message.text[7:]);
+            reply = texthandlers.dealer(app,"start_score_register",event.message.text[7:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             if(reply['status']):
                 message = TextSendMessage(text=reply['content'])
                 line_bot_api.reply_message(event.reply_token, message)
         if event.message.text.startswith("檢視成績 "):#開始報成績/n項目一/n項目二
-            reply = texthandlers.dealer("view_score_register",event.message.text[6:]);
+            reply = texthandlers.dealer(app,"view_score_register",event.message.text[6:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             if(reply['status']):
