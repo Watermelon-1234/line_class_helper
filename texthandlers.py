@@ -45,8 +45,8 @@ def genernal_request(app,func="roll_call",data=["周西瓜","1","1","被電神�
         try:
             app.logger.info("dealing data")
             # Assuming JSON response: Parse as JSON and access data
-            data = response_dealed['data']
-            app.logger.info(data)
+            # data = response_dealed['data']
+            # app.logger.info(data)
             if response_dealed['status'] == 1:  # Check for API-specific status code
                 app.logger.info("Request successful!")
                 status = 1

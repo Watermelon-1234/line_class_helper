@@ -79,8 +79,8 @@ def handle_message(event):
             app.logger.info("else")
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=reply))
     except Exception as e:
-        app.logger.error("An exception occurred:", e)
-        app.logger.error("Arguments:", e.args)
+        # app.logger.error("An exception occurred:", e)
+        # app.logger.error("Arguments:", e.args)
         app.logger.error("String representation:", str(e))
         # 如果你想得到更技术性的输出，可以使用 repr(e)
         app.logger.error("Technical representation:", repr(e))
