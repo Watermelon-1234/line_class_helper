@@ -8,7 +8,7 @@ import logging
 
 app = Flask(__name__)
 
-app.logger.setLevel(logging.DEBUG)
+app.logger.setLevel(logging.DEBUG)# using logging to solve the problem of no debugging messages
 
 logging_handeler = logging.StreamHandler()
 logging_handeler.setLevel(logging.DEBUG)
@@ -72,12 +72,18 @@ def handle_message(event):
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             send_message(event,reply['status'],reply['message'])
+        if event.message.text == "學生" or event.message.text == "老師":
+            app.logger.info("user_is_ascking_for_command")
         else:
             reply = "你說得對，\n但是梵蒂岡的常住人口有800人，\n同時，僅澳大利亞就有4700萬隻袋鼠。\n如果袋鼠決定入侵梵蒂岡，\n那麼每一個梵蒂岡人要打58750只袋鼠，\n你不知道，你不在乎，你只關心你自己。"
             app.logger.info("else")
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=reply))
     except Exception as e:
-        app.logger.error("An error occurred: " + str(e))
+        app.logger.error("An exception occurred:", e)
+        app.logger.error("Arguments:", e.args)
+        app.logger.error("String representation:", str(e))
+        # 如果你想得到更技术性的输出，可以使用 repr(e)
+        app.logger.error("Technical representation:", repr(e))
         reply = "出了一些問題，請稍後再試"
         message = TextSendMessage(text=reply)
         line_bot_api.reply_message(event.reply_token, message)
