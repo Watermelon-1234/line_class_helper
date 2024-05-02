@@ -65,5 +65,5 @@ def genernal_request(app,func="roll_call",data=["周西瓜","1","1","被電神�
 
 
 # app.logger.info(roll_call(0).content)
-print(genernal_request()['status'])
+# print(genernal_request()['status'])
 # print(dealer("roll_call","1 1 1 1"))
