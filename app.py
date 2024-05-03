@@ -42,14 +42,14 @@ def i_alive():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     try:
-        if event.message.text.startswith("簽到 "):#簽到 名字 課程ID 是否會遲到(0/1) 備註(選填)
+        if event.message.text.startswith("簽到 "):#簽到 座號 名字 課程ID 是否會遲到(0/1) 備註(選填)
             reply = texthandlers.dealer(app,"roll_call",event.message.text[3:]);
             app.logger.info("handler-簽到")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             send_message(event,reply['status'],reply['content'])
         if event.message.text.startswith("開始簽到 "):#開始簽到 課程名稱
             reply = texthandlers.dealer(app,"start_roll_call",event.message.text[5:]);
-            app.logger.info("")
+            app.logger.info("handler-開始簽到")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             send_message(event,reply['status'],reply['content'])
         if event.message.text.startswith("檢視簽到 "):#檢視簽到 ID
@@ -62,7 +62,7 @@ def handle_message(event):
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             send_message(event,reply['status'],reply['content'])
-        if event.message.text.startswith("開始報成績 "):#開始報成績/n項目一/n項目二
+        if event.message.text.startswith("開始報成績\n"):#開始報成績/n項目一/n項目二
             reply = texthandlers.dealer(app,"start_score_register",event.message.text[6:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
