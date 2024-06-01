@@ -63,7 +63,7 @@ def handle_message(event):
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             send_message(event,reply['status'],reply['content'])
-        if event.message.text.startswith("開始報成績\n"):#開始報成績/n項目一/n項目二
+        if event.message.text.startswith("開始報成績\n") or event.message.text.startswith("開始報成績 "):#開始報成績/n項目一/n項目二
             reply = texthandlers.dealer(app,"start_score_register",event.message.text[6:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
