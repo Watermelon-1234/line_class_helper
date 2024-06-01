@@ -54,7 +54,7 @@ def handle_message(event):
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             send_message(event,reply['status'],reply['content'])
         if event.message.text.startswith("檢視簽到 "):#檢視簽到 ID
-            reply = texthandlers.dealer(app,"view_roll_call",event.message.text[3:]);
+            reply = texthandlers.dealer(app,"view_roll_call",event.message.text[5:]);
             app.logger.info("")
             #message = ImageSendMessage(original_content_url=reply, preview_image_url=reply)
             send_message(event,reply['status'],reply['content'])
