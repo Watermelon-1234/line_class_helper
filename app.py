@@ -36,6 +36,7 @@ def callback():
 
 @app.route("/wake", methods=['POST'])
 def i_alive():
+    app.logger.info("waker fetching")
     my_variable = '<h1>I alive</h1>'
     return my_variable
 
